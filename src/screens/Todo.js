@@ -12,7 +12,7 @@ export default function Todo({ navigation }) {
     const todoItems = useSelector(state => state);
     const dispatch = useDispatch();
 
-    //console.log(todoItems);
+    console.log(todoItems);
 
     const [todo, setTodo] = useState();
     const [edit, setEditTodo] = useState();
