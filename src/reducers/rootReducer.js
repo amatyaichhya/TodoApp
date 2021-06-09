@@ -18,8 +18,7 @@ export default function RootReducer(state = initialState, action) {
                 todo)
         case 'DELETE_TODO':
             return [...state, state.filter((item) => item.id !== action.id)]
-
-        case 'TOGGLE_TODO':
+        case 'EDIT_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
                     ?{...todo,text:
