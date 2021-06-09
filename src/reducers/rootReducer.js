@@ -1,3 +1,4 @@
+import remove from 'lodash.remove'
 const initialState = []
 
 export default function RootReducer(state = initialState, action) {
@@ -17,7 +18,11 @@ export default function RootReducer(state = initialState, action) {
                     !todo.completed}:
                 todo)
         case 'DELETE_TODO':
-            return [...state, state.filter((item) => item.id !== action.id)]
+            const deleteNewArray = remove(state, obj => {
+                return obj.id != action.id
+            })
+
+            return deleteNewArray
         case 'EDIT_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
