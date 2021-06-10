@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#E5E7EA',
+        // backgroundColor: '#E5E7EA',
     },
     modalContent: {
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#E5E7EA',
-    },
+     },
     editTodo: {
         fontSize: 24,
         fontWeight: 'bold',
