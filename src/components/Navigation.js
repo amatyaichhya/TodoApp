@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Todo from "../screens/Todo";
 import DoneTodo from "../screens/DoneTodo";
 import { Text, Dimensions, TouchableNativeFeedback, Switch, paperTheme, View } from "react-native";
+import { useSelector } from "react-redux";
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -48,7 +49,21 @@ function DoneStackScreen({ navigation }) {
     );
   }
 
-function TabNavigation() {
+export function TabNavigation() {
+
+  const state = useSelector(state => state);
+
+  let badgeCountTodo = 0;
+  let badgeCountDone = 0;
+
+  state.map(({completed, id, text}, index) => {
+    if (!completed) {
+        badgeCountTodo++; 
+    }else {
+      badgeCountDone++;
+    }
+  })
+
     return (
         <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -74,8 +89,8 @@ function TabNavigation() {
             style: {width: ScreenWidth}
           }}
         >
-          <Tab.Screen name="Todo" component={TodoStackScreen} options={{ tabBarBadge: 1}} />
-          <Tab.Screen name="DoneTodo" component={DoneStackScreen} options={{ tabBarBadge: 3 }} />
+          <Tab.Screen name="Todo" component={TodoStackScreen} options={{ tabBarBadge: badgeCountTodo}} />
+          <Tab.Screen name="DoneTodo" component={DoneStackScreen} options={{ tabBarBadge: badgeCountDone }} />
         </Tab.Navigator>
     )
 }
