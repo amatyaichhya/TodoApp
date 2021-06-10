@@ -133,13 +133,14 @@ export default function Navigation() {
 
     return (
       <NavigationContainer theme={isDarkTheme ? DarkTheme : DefaultTheme }>
+
         <Drawer.Navigator
         drawerContent= {Theme}
         drawerStyle={{
             backgroundColor: '#EBE9F7',
             width: 240,
           }}
-          >
+        >
             <Drawer.Screen name="Home" component={TabNavigation} />
             <Drawer.Screen name="DarkTheme" component={Theme} />
         </Drawer.Navigator>
