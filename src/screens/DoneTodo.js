@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, 
-    StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity, 
-    TouchableWithoutFeedback, Keyboard, ScrollView, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { SafeAreaView, StyleSheet, View, TouchableWithoutFeedback, Keyboard, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import DoneTodoCard from "../components/DoneTodoCard";
 import { addTodo } from "../actions/TodoActions";

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useDispatch } from 'react-redux';
@@ -12,17 +11,18 @@ export default function TodoCard({id, todo, editTodoHandler}) {
     return (
         <TouchableOpacity
         onLongPress={() => editTodoHandler(id, todo)}>
-        <View style = {styles.TodoItem}>
-            <View style = {styles.left}>
-                <TouchableOpacity style={styles.checkbox} onPress = {() => dispatch(toggleTodo(id))}></TouchableOpacity>
-                <Text style = {styles.itemText}>{todo}</Text>
-            </View> 
+            <View style = {styles.TodoItem}>
+                
+                <View style = {styles.left}>
+                    <TouchableOpacity style={styles.checkbox} onPress = {() => dispatch(toggleTodo(id))}></TouchableOpacity>
+                    <Text style = {styles.itemText}>{todo}</Text>
+                </View> 
+                
+                <View style = {styles.right}>
+                    <Icon name='trash' color= 'slateblue' size={20} onPress={() => dispatch(deleteTodo(id))}/>
+                </View>
             
-            <View style = {styles.right}>
-                <Icon name='trash' color= 'slateblue' size={20} onPress={() => dispatch(deleteTodo(id))}/>
             </View>
-        
-        </View>
         </TouchableOpacity>
     )
 }

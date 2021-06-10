@@ -28,7 +28,7 @@ function TodoStackScreen({ navigation }) {
             <Icon name="navicon" size={25} 
             style={{marginStart:10}} color='white' backgroundColor="#000000" onPress={() => navigation.openDrawer()} ></Icon>
           ),
-    }} />
+      }} />
     </TodoStack.Navigator>
   );
 }
@@ -66,28 +66,28 @@ export function TabNavigation() {
 
     return (
         <Tab.Navigator
-        screenOptions={({ route }) => ({
-            tabBarBadgeStyle: {backgroundColor: 'slateblue'},
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-  
-              if (route.name === 'Todo') {
-                iconName = focused
-                  ? 'list-ul'
-                  : 'list-ul';
-              } else if (route.name === 'DoneTodo') {
-                iconName = focused ? 'check' : 'check';
-              }
-  
-              return <Icon name={iconName} size={size} color={color}  />;
-            },
-          })}
-          tabBarOptions={{
-            activeTintColor: 'slateblue',
-            inactiveTintColor: 'grey',
-            labelStyle: {fontSize: 14},
-            style: {width: ScreenWidth}
-          }}
+          screenOptions={({ route }) => ({
+              tabBarBadgeStyle: {backgroundColor: 'slateblue'},
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+    
+                if (route.name === 'Todo') {
+                  iconName = focused
+                    ? 'list-ul'
+                    : 'list-ul';
+                } else if (route.name === 'DoneTodo') {
+                  iconName = focused ? 'check' : 'check';
+                }
+    
+                return <Icon name={iconName} size={size} color={color}  />;
+              },
+            })}
+            tabBarOptions={{
+              activeTintColor: 'slateblue',
+              inactiveTintColor: 'grey',
+              labelStyle: {fontSize: 14},
+              style: {width: ScreenWidth}
+            }}
         >
           <Tab.Screen name="Todo" component={TodoStackScreen} options={{ tabBarBadge: badgeCountTodo}} />
           <Tab.Screen name="DoneTodo" component={DoneStackScreen} options={{ tabBarBadge: badgeCountDone }} />
@@ -103,6 +103,7 @@ export default function Navigation() {
 
     return (
             <View style = {{flex:1}}>
+
                 <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>
                     <View style={{
                     paddingVertical: 12,
@@ -110,6 +111,7 @@ export default function Navigation() {
                         <Text>Home</Text>
                     </View>
                 </TouchableNativeFeedback>
+
                 <TouchableNativeFeedback>
                     <View style={{flexDirection: 'row',
                     justifyContent: 'space-between',
@@ -123,6 +125,7 @@ export default function Navigation() {
                             value={isDarkTheme}/>
                     </View>
                 </TouchableNativeFeedback>
+                
             </View>
     
     )

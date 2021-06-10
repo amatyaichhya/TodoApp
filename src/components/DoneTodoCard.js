@@ -11,6 +11,7 @@ export default function DoneTodoCard({id, todo}) {
 
     return (
         <View style = {styles.TodoItem}>
+            
             <View style = {styles.left}>
                 <Text style = {styles.itemText}>{todo}</Text>
             </View>  

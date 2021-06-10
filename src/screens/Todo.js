@@ -38,53 +38,53 @@ export default function Todo({ navigation }) {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <SafeAreaView style = { styles.container}>
+            <SafeAreaView style = { styles.container}>
 
-            <Modal visible = {modal} animationType='slide'>
-                <View style = {styles.modalContent}>
-                    <Icon name = 'close' size={20} color='slateblue' style={{alignSelf: 'center', margin: 10}}
-                    onPress={() => setModal(false)} />
-                    <Text style = {styles.editTodo}>Edit Todo</Text>
-                    <TextInput 
-                    style= {styles.editInput} 
-                    value = {edit}
-                    onChangeText = {text => setEditTodo(text)}
-                ></TextInput>
-                <View style = {styles.button}>
-                    <Button
-                    onPress={() => editHandler()}
-                    title="Update"
-                    color="slateblue"
-                    />
-                </View>
-                
-                </View>
-            </Modal>
-
-            <View style = {styles.todoContents}>
-                    {todoItems.map(({completed, id, text}, index) => {
-                        if (!completed) {
-                            return <TodoCard key = {index} id = {id} todo = {text} editTodoHandler = {editTodoHandler} /> 
-                        }
-                    })}
-            </View>
-
-            <KeyboardAvoidingView style = {styles.inputWrapper}>
-                <TextInput 
-                    style= {styles.input} 
-                    placeholder='Add Todo'
-                    value = {todo}
-                    onChangeText = {text => setTodo(text)}
-                ></TextInput>
-
-                <TouchableOpacity onPress = {() => addTodoHandler()}>
-                    <View  style = {styles.addWrapper}>
-                        <Icon name='plus' color= 'slateblue' size={20}/>
+                <Modal visible = {modal} animationType='slide'>
+                    <View style = {styles.modalContent}>
+                        <Icon name = 'close' size={20} color='slateblue' style={{alignSelf: 'center', margin: 10}}
+                        onPress={() => setModal(false)} />
+                        <Text style = {styles.editTodo}>Edit Todo</Text>
+                        <TextInput 
+                        style= {styles.editInput} 
+                        value = {edit}
+                        onChangeText = {text => setEditTodo(text)}
+                    ></TextInput>
+                    <View style = {styles.button}>
+                        <Button
+                        onPress={() => editHandler()}
+                        title="Update"
+                        color="slateblue"
+                        />
                     </View>
-                </TouchableOpacity>
-            </KeyboardAvoidingView>
+                    
+                    </View>
+                </Modal>
 
-        </SafeAreaView>
+                <View style = {styles.todoContents}>
+                        {todoItems.map(({completed, id, text}, index) => {
+                            if (!completed) {
+                                return <TodoCard key = {index} id = {id} todo = {text} editTodoHandler = {editTodoHandler} /> 
+                            }
+                        })}
+                </View>
+
+                <KeyboardAvoidingView style = {styles.inputWrapper}>
+                    <TextInput 
+                        style= {styles.input} 
+                        placeholder='Add Todo'
+                        value = {todo}
+                        onChangeText = {text => setTodo(text)}
+                    ></TextInput>
+
+                    <TouchableOpacity onPress = {() => addTodoHandler()}>
+                        <View  style = {styles.addWrapper}>
+                            <Icon name='plus' color= 'slateblue' size={20}/>
+                        </View>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
+
+            </SafeAreaView>
         </TouchableWithoutFeedback>
     )
 }
