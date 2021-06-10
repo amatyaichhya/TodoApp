@@ -1,14 +1,12 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useState } from "react";
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
-import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from "react-native-vector-icons/FontAwesome";
 import Todo from "../screens/Todo";
 import DoneTodo from "../screens/DoneTodo";
-import DrawerContent from "./DrawerContent";
 import { Text, Dimensions, TouchableNativeFeedback, Switch, paperTheme, View } from "react-native";
-import { color } from "react-native-reanimated";
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -54,7 +52,7 @@ function TabNavigation() {
     return (
         <Tab.Navigator
         screenOptions={({ route }) => ({
-            tabBarBadgeStyle: {backgroundColor: color},
+            tabBarBadgeStyle: {backgroundColor: 'slateblue'},
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
   
@@ -76,13 +74,18 @@ function TabNavigation() {
             style: {width: ScreenWidth}
           }}
         >
-          <Tab.Screen name="Todo" component={TodoStackScreen} options={{ tabBarBadge: 1}}/>
+          <Tab.Screen name="Todo" component={TodoStackScreen} options={{ tabBarBadge: 1}} />
           <Tab.Screen name="DoneTodo" component={DoneStackScreen} options={{ tabBarBadge: 3 }} />
         </Tab.Navigator>
     )
 }
 
-function Theme({ navigation }) {
+export default function Navigation() {
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  function Theme({ navigation }) {
+
     return (
             <View style = {{flex:1}}>
                 <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>
@@ -98,9 +101,11 @@ function Theme({ navigation }) {
                     paddingVertical: 12,
                     paddingHorizontal: 16,}}>
                         <Text>Dark Theme</Text>
-                        <View pointerEvents="none">
-                            <Switch value={paperTheme}/>
-                        </View>
+                        <Switch 
+                          trackColor={{ false: "#ABABAB", true: "#333" }}
+                          thumbColor={isDarkTheme ? "#ABABAB" : "slateblue"}
+                            onValueChange={()=> setIsDarkTheme(!isDarkTheme)}
+                            value={isDarkTheme}/>
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -108,15 +113,13 @@ function Theme({ navigation }) {
     )
 }
 
-export default function Navigation() {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={isDarkTheme ? DarkTheme : DefaultTheme }>
         <Drawer.Navigator
         drawerContent= {Theme}
         drawerStyle={{
             backgroundColor: '#EBE9F7',
             width: 240,
-            color: '#333'
           }}
           >
             <Drawer.Screen name="Home" component={TabNavigation} />
