@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         opacity: 0.2,
     },
     itemText: {
-        maxWidth: '80%',
+        maxWidth: '90%',
 
     },
     right: {
