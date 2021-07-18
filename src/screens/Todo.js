@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   SafeAreaView,
-  Text,
   StyleSheet,
   View,
   KeyboardAvoidingView,
@@ -10,13 +9,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  Modal,
-  Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import TodoCard from '../components/TodoCard';
 import {addTodo, editTodo} from '../actions/TodoActions';
+import ModalComponent from '../components/Modal';
 
 export default function Todo() {
   const todoItems = useSelector(state => state);
@@ -44,34 +42,17 @@ export default function Todo() {
     dispatch(editTodo(editId, edit));
   };
 
+  const modalHandler = () => {
+    setModal(false);
+  };
+
+  const editModalHandler = text => {
+    setEditTodo(text);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.container}>
-        <Modal visible={modal} animationType="slide">
-          <View style={styles.modalContent}>
-            <Icon
-              name="close"
-              size={20}
-              color="slateblue"
-              style={{alignSelf: 'center', margin: 10}}
-              onPress={() => setModal(false)}
-            />
-            <Text style={styles.editTodo}>Edit Todo</Text>
-            <TextInput
-              style={styles.editInput}
-              value={edit}
-              onChangeText={text => setEditTodo(text)}
-            />
-            <View style={styles.button}>
-              <Button
-                onPress={() => editHandler()}
-                title="Update"
-                color="slateblue"
-              />
-            </View>
-          </View>
-        </Modal>
-
         <View style={styles.todoContents}>
           {todoItems.map(({completed, id, text}, index) => {
             if (!completed) {
@@ -101,6 +82,14 @@ export default function Todo() {
             </View>
           </TouchableOpacity>
         </KeyboardAvoidingView>
+
+        <ModalComponent
+          modal={modal}
+          modalHandler={modalHandler}
+          edit={edit}
+          editModalHandler={editModalHandler}
+          editHandler={editHandler}
+        />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
