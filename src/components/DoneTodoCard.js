@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
           },
     },
     left: {
-        width: '80%',
+        width: '90%',
         flexDirection: 'row',
         alignItems: 'center',
         marginRight: 15,
         flexWrap: 'wrap'
     },
     itemText: {
-        maxWidth: '80%',
+        maxWidth: '90%',
     }
 })
